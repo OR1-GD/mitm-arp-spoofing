@@ -3,8 +3,6 @@ from datetime import datetime
 from scapy.all import *
 from scapy.layers.l2 import ARP,Ether
 from threading import Thread
-from m
-from sniffer import packet_sniffer
 
 class Spoofer(Thread):
     def __init__(self, ifname=conf.iface.name, mac=None, group: None = ..., target: Callable[..., Any] | None = ..., name: str | None = ..., args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = ..., *, daemon: bool | None = ...) -> None:
@@ -18,9 +16,7 @@ class Spoofer(Thread):
             print("\t[Info] no mac given - genearting mac")
         print(f"\t[+] set spoofer mac to {mac}")
         self.mac = mac
-        # create a packet sniffer with "arp" filter 
-        self.sniffer = packet_sniffer(filter="arp", iface_name=ifname)
-        print("\t[]")
+        
         print("\t[Info] finished initialzing spoofer")
 
     def get_mac(self,ip,timeout=5):
